@@ -2,4 +2,38 @@
     padding: 0px;
     margin: 0px;
     font-family: 'Roboto mono';
+    text-align: center;
+}
+
+.container{
+
+    width: 90rem;
+
+}
+
+#title{
+    font-size: 4rem;
+    margin: 2rem;
+}
+
+#movieBox{
+        
+    font-size: 1.5rem;
+    border-radius: 10px;
+    
+}
+#movieName{
+    border: 1px solid black;
+    width: 50rem;
+}
+
+#searchBox{
+    
+    font-size: 1.4rem;
+    border-radius: 10px;
+    margin: 10px;
+}
+#search{
+    border: 1px solid black;
+    width: 50rem;
 }
