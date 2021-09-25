@@ -6,10 +6,29 @@ let movieName = document.getElementById('movieName');
 searchBox.addEventListener('click',()=>{
 
     if(movieName.value===''){
-        alert("No movie name");
+
+        function showAlert(){
+            
+            let cont = document.querySelector('.container');
+            let title = document.getElementById('title');
+
+            let element = document.createElement('div');
+            element.id = 'showAlert'
+            element.classList = 'alert alert-info';
+            element.setAttribute('role','alert')
+            element.innerHTML = '<h4>Find Movie</h4>';
+
+            cont.insertBefore(element,title);
+        };
+        showAlert();
+
+        setTimeout(() => {
+            document.querySelector('#showAlert').remove()
+        }, 2000);
+        
     }else{
 
-        let apikey = 'you api key ';
+        let apikey = 'Your api key';
         url = `http://www.omdbapi.com/?apikey=${apikey}&s=${movieName.value.toLowerCase()}`;
     
         fetchData(url);
@@ -24,7 +43,7 @@ async function fetchData(url){
     let movieBox = document.querySelector('#box');
 
    let movieData = await fetch(url).then(res=>{return res.json()}).then(data=>{return data.Search}).catch(error=>{console.log(error)});
-   
+    
     movieData.forEach((e)=>{
 
         let div = document.createElement('div');
@@ -34,8 +53,7 @@ async function fetchData(url){
         <div class="card-body">
         <h4 class="card-title">${e.Title}</h4>
         <hr>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" style="padding: 8px;font-size: 17px;" class="btn alert-primary">Check Movie</a>
+        <a href="${e.imdbID}" style="padding: 8px;font-size: 17px;" class="btn alert-primary">Check Movie</a>
         </div>`
         
         movieBox.append(div);       
