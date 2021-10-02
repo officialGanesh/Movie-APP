@@ -3,8 +3,9 @@ console.log("Movies 🔥");
 let searchBox = document.querySelector("#searchBox");
 let movieName = document.getElementById('movieName');
 
-searchBox.addEventListener('click',()=>{
+searchBox.addEventListener('click',(e)=>{
 
+    e.preventDefault()
     if(movieName.value===''){
 
         function showAlert(){
@@ -28,7 +29,7 @@ searchBox.addEventListener('click',()=>{
         
     }else{
 
-        let apikey = 'Your api key';
+        let apikey = 'Your api key here';
         url = `http://www.omdbapi.com/?apikey=${apikey}&s=${movieName.value.toLowerCase()}`;
     
         fetchData(url);
@@ -42,7 +43,7 @@ async function fetchData(url){
 
     let movieBox = document.querySelector('#box');
 
-   let movieData = await fetch(url).then(res=>{return res.json()}).then(data=>{return data.Search}).catch(error=>{console.log(error)});
+   let movieData = await fetch(url).then(res=>{return res.json()}).then(data=>{return data.Search}).catch(error=>{'Something went wrong ', e});
     
     movieData.forEach((e)=>{
 
